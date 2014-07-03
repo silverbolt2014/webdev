@@ -1,0 +1,124 @@
+HTTP is a communication standard governing the requests and responses that take
+place between the browser running on the end user’s computer and the web server.
+The server’s job is to accept a request from the client and attempt to reply to it in a
+meaningful way, usually by serving up a requested web page—that’s why the term
+server is used. The natural counterpart to a server is a client, so that term is applied
+both to the web browser and the computer on which it’s running.
+
+
+Here are the steps:
+1. You enter http://server.com into your browser’s address bar.
+2. Your browser looks up the IP address for server.com.
+3. Your browser issues a request to that address for the web server’s home page.
+4. The request crosses the Internet and arrives at the server.com web server.
+5. The web server, having received the request, fetches the home page from its hard
+disk.
+6. With the home page now in memory, the web server notices that it is a file incorporating
+PHP scripting and passes the page to the PHP interpreter.
+7. The PHP interpreter executes the PHP code.
+8. Some of the PHP contains MySQL statements, which the PHP interpreter now
+passes to the MySQL database engine.
+9. The MySQL database returns the results of the statements back to the PHP interpreter.
+10. The PHP interpreter returns the results of the executed PHP code, along with the
+results from the MySQL database, to the web server.
+11. The web server returns the page to the requesting client, which displays it.
+
+
+
+JavaScript was originally developed to offer dynamic control
+over the various elements within an HTML document, and that is still its main use. But
+more and more, JavaScript is being used for Ajax. This is a term for the process of
+accessing the web server in the background. (It originally meant “Asynchronous Java-
+Script and XML,” but that phrase is already a bit outdated.)
+
+
+Test Your Knowledge
+1. What four components are needed to create a fully dynamic web page?
+2. What does HTML stand for?
+3. Why does the name MySQL contain the letters SQL?
+4. PHP and JavaScript are both programming languages that generate dynamic results
+for web pages. What is their main difference, and why would you use both of them?
+5. What does CSS stand for?
+6. If you encounter a bug (which is rare) in one of the open source tools, how do you
+think you could get it fixed?
+
+1. PHP, MySQL, JavaScript, Apache
+2. hyper text markup languages
+3. MySQL accepts commands in the SQL language so its name contains SQL
+4. PHP is used for the backend (on the server).  Javascript is used on the front end (client side browser)
+5. Cascading Sytle Sheets
+6. I could fix it myself or submit a bug to the development team.
+
+
+-----
+
+Chapter 2
+
+PHP is the language that you use to make the server
+generate dynamic output—output that is potentially different each time a browser requests
+a page.
+
+
+By default, PHP documents end with the extension .php. When a web server encounters
+this extension in a requested file, it automatically passes it to the PHP processor. Of
+course, web servers are highly configurable, and some web developers choose to force
+files ending with .htm or .html to also get parsed by the PHP processor, usually because
+they want to hide the fact that they are using PHP.
+Your PHP program is responsible for passing back a clean file suitable for display in a
+web browser. At its very simplest, a PHP document will output only HTML.
+
+
+
+There are two ways in which you can add comments to your PHP code. The first turns
+a single line into a comment by preceding it with a pair of forward slashes, like this:
+// This is a comment
+
+
+Multiline Comments
+<?php
+/* This is a section
+of multiline comments
+that will not be
+interpreted */
+?>
+
+
+Array Creation
+$team = array('Bill', 'Joe', 'Mike', 'Chris', 'Jim');
+
+
+PHP supports two types of strings that are denoted by the type of quotation mark that
+you use. If you wish to assign a literal string, preserving the exact contents, you should
+use the single quotation mark (apostrophe), like this:
+
+$info = 'Preface variables with a $ like this: $variable';
+
+
+In this case, every character within the single-quoted string is assigned to $info. If you
+had used double quotes, PHP would have attempted to evaluate $variable as a variable
+
+On the other hand, when you want to include the value of a variable inside a string,
+you do so by using a double-quoted string:
+
+echo "There have been $count presidents of the US";
+
+As you will realize, this syntax also offers a simpler form of concatenation in which you
+don’t need to use a period, or close and reopen quotes, to append one string to another.
+This is called variable substitution. You will notice some applications using it extensively
+and others not using it at all.
+
+
+you can use escape characters to insert various special characters into
+strings, such as tabs, newlines, and carriage returns. These are represented, as you might
+guess, by \t, \n, and \r. Here is an example using tabs to lay out a heading; it is included
+here merely to illustrate escapes, because in web pages there are always better ways to
+do layout:
+
+$heading = "Date\tName\tPayment";
+
+These special backslash-preceded characters work only in double-quoted strings. In
+single-quoted strings, the preceding string would be displayed with the ugly \t sequences
+instead of tabs. Within single-quoted strings, only the escaped apostrophe
+(\') and the escaped backslash itself (\\) are recognized as escaped characters.
+
+
