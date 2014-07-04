@@ -68,6 +68,9 @@ Your PHP program is responsible for passing back a clean file suitable for displ
 web browser. At its very simplest, a PHP document will output only HTML.
 
 
+----
+Chapter 3
+
 
 There are two ways in which you can add comments to your PHP code. The first turns
 a single line into a comment by preceding it with a pair of forward slashes, like this:
@@ -122,3 +125,83 @@ instead of tabs. Within single-quoted strings, only the escaped apostrophe
 (\') and the escaped backslash itself (\\) are recognized as escaped characters.
 
 
+
+How to create constants in php
+
+define("ROOT_LOCATION", "/usr/local/www/");
+Then, to read the contents of the variable, you just refer to it like a regular variable (but
+it isn’t preceded by a dollar sign):
+
+$directory = ROOT_LOCATION;
+
+
+----
+
+Function declaration example:
+
+<?php
+function longdate($timestamp)
+{
+return date("l F jS Y", $timestamp);
+}
+?>
+
+----
+
+by default, variables created within a function are local to
+that function and variables created outside of any functions can be accessed only by
+nonfunction code.
+
+---
+
+Test Your Knowledge
+1. What tag is used to cause PHP to start interpreting program code? And what is the
+short form of the tag?
+2. What are the two types of comment tags?
+3. Which character must be placed at the end of every PHP statement?
+4. Which symbol is used to preface all PHP variable names?
+5. What can a variable store?
+6. What is the difference between $variable = 1 and $variable == 1?
+7. Why do you suppose that an underscore is allowed in variable names
+($current_user), whereas hyphens are not ($current-user)?
+8. Are variable names case-sensitive?
+9. Can you use spaces in variable names?
+10. How do you convert one variable type to another (say, a string to a number)?
+11. What is the difference between ++$j and $j++?
+12. Are the operators && and and interchangeable?
+13. How can you create a multiline echo or assignment?
+14. Can you redefine a constant?
+15. How do you escape a quotation mark?
+16. What is the difference between the echo and print commands?
+17. What is the purpose of functions?
+18. How can you make a variable accessible to all parts of a PHP program?
+19. If you generate data within a function, what are a couple of ways to convey the
+data to the rest of the program?
+20. What is the result of combining a string with a number?
+
+
+
+1. "<?php " and "?>"
+2. // and /* ... */
+3. ;
+4. $
+5. Anything you assign to it.
+6. First one is assignment, the second one is comparison.
+7. I think hyphens are not allowed so that they are not confused with subtractions.
+8. Yes variable names are case-sensitive.
+9. no.
+10. Just use it in the function or situation that expects it to be a particular type.
+The conversion is done automatically.
+11. pre-increment vs post-increment
+12. Not really unless parenthesis are used.
+13. By using the heredoc construct.
+14. no.
+15. \'
+16. echo is a php construct. print is a function.
+17. To group a set of statements that perform a specific task so that they can be used as needed.
+18. Preceed it with the global keyword.
+19. Use a return statement to return the data or assign the data to a global variable.
+20. If concatenation is used a string.  If a mathematical operator is used a number.
+
+
+----
