@@ -205,3 +205,76 @@ The conversion is done automatically.
 
 
 ----
+
+
+Chapter 4
+
+
+An expression is a combination of values, variables, operators, and functions that results
+in a value.
+
+in PHP the constant FALSE is defined as NULL, or nothing.
+
+The simplest form of an expression is a literal, which simply means something that
+evaluates to itself, such as the number 73 or the string “Hello”. An expression could
+also simply be a variable, which evaluates to the value that has been assigned to it.
+These are both types of expressions because they return a value.
+
+any strings composed entirely of numbers will be converted to numbers
+whenever compared with a number
+
+
+break
+
+In a loop, "break" breaks out of the first for loop that it is located inside.
+
+
+$c = (int) ($a / $b);
+This is called explicit casting. Note that in order to ensure that the value of the entire
+expression is cast to an integer, the expression is placed within parentheses. Otherwise,
+only the variable $a would have been cast to an integer—a pointless exercise, as the
+division by $b would still have returned a floating-point number.
+
+Test Your Knowledge
+1. What actual underlying values are represented by TRUE and FALSE?
+2. What are the simplest two forms of expressions?
+3. What is the difference between unary, binary, and ternary operators?
+4. What is the best way to force your own operator precedence?
+5. What is meant by operator associativity?
+6. When would you use the === (identity) operator?
+7. Name the three conditional statement types.
+8. What command can you use to skip the current iteration of a loop and move on
+to the next one?
+9. Why is a for loop more powerful than a while loop?
+10. How do if and while statements interpret conditional expressions of different data
+types?
+
+
+1. ?? In PHP, TRUE represents the value 1 and FALSE represents NULL, which can be thought
+of as “nothing” and is output as the empty string.
+
+2. a string literal and a number ?? The simplest forms of expressions are literals (such as numbers and strings) and
+variables, which simply evaluate to themselves.
+
+3. 1 operand, 2 operands, 3 operands
+
+4. use ()
+
+5. the direction in which an operator is evaluated
+
+6. When I want to check the type and value of two variables. ?? You use the identity operator when you wish to bypass PHP’s automatic operand
+type changing (also called type casting).
+
+7. while, do..while and for
+
+8. continue
+
+9. ?? Loops using for statements are more powerful than while loops because they support
+two additional parameters to control the loop handling.
+
+10.  ?? Most conditional expressions in if and while statements are literal (or Boolean)
+and therefore trigger execution when they evaluate to TRUE. Numeric expressions
+trigger execution when they evaluate to a nonzero value. String expressions trigger
+execution when they evaluate to a nonempty string. A NULL value is evaluated as
+false and therefore does not trigger execution.
+
