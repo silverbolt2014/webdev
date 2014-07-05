@@ -278,3 +278,302 @@ trigger execution when they evaluate to a nonzero value. String expressions trig
 execution when they evaluate to a nonempty string. A NULL value is evaluated as
 false and therefore does not trigger execution.
 
+
+
+-----
+
+
+Chapter 5
+
+functions associated with a class or method are referred to as methods
+
+
+Passing by Reference
+In PHP, prefacing a variable name with the & symbol tells the parser to pass a reference
+to the variable’s value, not the value itself.
+
+
+Variable Scope
+Local variables are accessible just from the part of code where you define them. If
+they’re outside of a function, they can be accessed by all code outside of functions,
+classes, and so on. If a variable is inside a function, only that function can access
+the variable, and its value is lost when the function returns.
+
+Global variables are accessible from all parts of your code.
+
+Static variables are accessible only within the function that declared them but retain
+their value over multiple calls.
+
+The include Statement
+Using include, you can tell PHP to fetch a particular file and load all its contents. It’s
+as if you pasted the included file into the current file at the insertion point
+
+Example:
+<?php
+include "library.php";
+// Your code goes here
+?>
+
+
+To avoid redefining functions and constants twice it is better to use include_once instead of include. 
+<?php
+include_once "library.php";
+// Your code goes here
+?>
+
+
+A potential problem with include and include_once is that PHP will only attempt to
+include the requested file. Program execution continues even if the file is not found.
+When it is absolutely essential to include a file, require it. For the same reasons I gave
+for using include_once, I recommend that you generally stick with require_once whenever
+you need to require a file
+
+
+When creating objects, it is best to use encapsulation, or writing a class in such a way
+that only its methods can be used to manipulate its properties. In other words, you
+deny outside code direct access to its data. The methods you supply are known as the
+object’s interface.
+
+
+Class definitions contain the class name (which is case-sensitive), its properties, and its
+methods.
+
+
+To create an object with a specified class, use the new keyword, like this: $object =
+new Class. Here are a couple of ways in which we could do this:
+$object = new User;
+$temp = new User('name', 'password');
+
+
+The syntax for accessing an object’s property is $object->property.
+Likewise, you call a method like this: $object->method().
+
+
+You can place functions and class definitions anywhere in your code,
+before or after statements that use them. Generally, though, it is considered
+good practice to place them toward the end of a file.
+
+
+How to write a constructor
+
+<?php
+class User
+{
+	function __construct($param1, $param2)
+	{
+		// Constructor statements go here
+		public $username = "Guest";
+	}
+}
+?>
+
+
+How to write a Destructor
+<?php
+class User
+{
+	function __destruct()
+	{
+		// Destructor code goes here
+	}
+}
+?>
+
+
+
+
+As you have seen, declaring a method is similar to declaring a function, but there are a
+few differences. For example, method names beginning with a double underscore
+(__) are reserved and you should not create any of this form
+You also have access to a special variable called $this, which can be used to access the
+current object’s properties.
+
+
+If you are using PHP 5, you can also define a method as static, which means that it is
+called on a class and not on an object. A static method has no access to any object
+properties.
+
+
+<?php
+User::pwd_string(); // Calling the static method
+
+// Class definition
+class User
+{
+	static function pwd_string()
+	{
+		echo "Please enter your password";
+	}
+}
+?>
+
+Note how the class itself is called, along with the static method, using a double colon
+(::, also known as the scope resolution operator) and not ->. Static functions are useful
+for performing actions relating to the class itself, but not to specific instances of the
+class.
+
+
+
+It is not necessary to explicitly declare properties within classes, as they can be implicitly
+defined when first used. To illustrate this, in Example 5-19 the class User has no properties
+and no methods but is legal code.
+
+<?php
+$object1 = new User();
+$object1->name = "Alice";
+echo $object1->name;
+
+class User{}
+?>
+
+
+
+when you declare a property within a class, you may assign a default value to it.
+The value you use must be a constant and not the result of a function or expression.
+
+
+
+You can declare constants in a class as follows:
+
+
+const CONSTANT_NAME = value;
+
+<?php
+Translate::lookup();
+class Translate
+{
+const ENGLISH = 0;
+const SPANISH = 1;
+const FRENCH = 2;
+const GERMAN = 3;
+// ...
+static function lookup()
+{
+echo self::SPANISH;
+}
+}
+?>
+
+
+constants are referred to using the self keyword followed by "::"
+
+
+Use public when outside code should access this member and extending classes
+should also inherit it.
+
+Use protected when outside code should not access this member but extending
+classes should inherit it.
+
+Use private when outside code should not access this member and extending
+classes also should not inherit it.
+
+
+A property declared static cannot be
+directly accessed within an instance of a class, but a static method can.
+
+
+A static method or property can be accessed from within a class by using "self::" followed by the property or method name.
+
+
+
+The parent operator
+If you write a method in a subclass with the same name as one in its parent class, its
+statements will override those of the parent class. Sometimes this is not the behavior
+you want, and you need to access the parent’s method. To do this, you can use the
+parent operator.
+
+<?php
+$object = new Son;
+$object->test();
+$object->test2();
+class Dad
+{
+	function test()
+	{
+		echo "[Class Dad] I am your Father<br />";
+	}
+}
+
+class Son extends Dad
+{
+	function test()
+	{
+		echo "[Class Son] I am Luke<br />";
+	}
+
+	function test2()
+	{
+		parent::test();
+	}
+}
+?>
+
+
+The output of the above is:
+[Class Son] I am Luke
+[Class Dad] I am your Father
+
+
+
+Subclass constructors
+When you extend a class and declare your own constructor, you should be aware that
+PHP will not automatically call the constructor method of the parent class. To be certain
+that all initialization code is executed, subclasses should always call the parent constructors,
+
+
+Final methods
+In cases in which you wish to prevent a subclass from overriding a superclass method,
+you can use the final keyword
+
+<?php
+class User
+{
+	final function copyright()
+	{
+		echo "This class was written by Joe Smith";
+	}
+}
+?>
+
+
+Test Your Knowledge
+1. What is the main benefit of using a function?
+2. How many values can a function return?
+3. What is the difference between accessing a variable by name and by reference?
+4. What is the meaning of scope in PHP?
+5. How can you incorporate one PHP file within another?
+6. How is an object different from a function?
+7. How do you create a new object in PHP?
+8. What syntax would you use to create a subclass from an existing one?
+9. How can you call an initializing piece of code when an object is created?
+10. Why is it a good idea to explicitly declare properties within a class?
+
+
+
+1. It allows one to reuse code easily without having to rewrite it.
+
+2. As many as you want. ?? By default, a function can return a single value. But by utilizing arrays, references,
+and global variables, any number of values can be returned.
+
+3. By name: a copy is made.  By Reference: You have direct access (like an pointer)
+
+4. Scope: in area of code in which a variable is visible (can be used)
+
+5. by using: require_once "fileName";
+
+6. An object can contain functions.  An object is a composite of functions plus data. ?? A function is a set of statements referenced by a name that can receive and return
+values. An object may contain zero, one, or many functions (which are then called
+methods) as well as variables (which are called properties), all combined in a single
+unit.
+
+7. new ClassName()
+
+8. class newClass extends oldClass{}
+
+9. By providing a constructor within the class: function __construct(){}
+
+10. That way is it easier to locate where the property is initialized. ?? Explicitly declaring properties within a class is unnecessary, as they will be implicitly
+declared upon first use. However, it is considered good practice as it helps
+with code readability and debugging, and is especially useful to other people who
+may have to maintain your code.
+
