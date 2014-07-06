@@ -577,3 +577,100 @@ declared upon first use. However, it is considered good practice as it helps
 with code readability and debugging, and is especially useful to other people who
 may have to maintain your code.
 
+
+
+----
+Chapter 6
+
+foreach...as structure
+
+foreach ($arrayName as $item)
+{
+	// Insert code to perform on each item in the array
+}
+
+
+foreach...as for associative arrays
+
+<?php
+	$paper = array('copier' => "Copier & Multipurpose",
+	'inkjet' => "Inkjet Printer",
+	'laser' => "Laser Printer",
+	'photo' => "Photographic Paper");
+	
+	foreach ($paper as $item => $description)
+		echo "$item: $description<br>";
+?>
+each item of the array $paper is fed into the key/value
+pair of variables $item and $description, from where they are printed out.
+
+Arrays and variables share the same namespace. This means that you cannot have a
+string variable called $fred and an array also called $fred.
+
+
+1. What is the difference between a numeric and an associative array?
+2. What is the main benefit of the array keyword?
+3. What is the difference between foreach and each?
+4. How can you create a multidimensional array?
+5. How can you determine the number of elements in an array?
+6. What is the purpose of the explode function?
+7. How can you set PHP’s internal pointer into an array back to the first element of
+the array?
+
+1. numeric: elements are accessed through a index. associate: elements are accessed using keys (strings) ?? alphanumeric identifiers
+
+2. You dont have to keep track of the indexes of elements ?? The main benefit of the array keyword is that it enables you to assign several values
+at a time to an array without repeating the array name.
+
+3. ?? Both the each function and the foreach...as loop construct return elements from
+an array; both start at the beginning and increment a pointer to make sure the next
+element is returned each time, and both return FALSE when the end of the array is
+reached. The difference is that the each function returns just a single element, so
+it is usually wrapped in a loop. The foreach...as construct is already a loop, executing
+repeatedly until the array is exhausted or you explicitly break out of the loop.
+
+4. By embedded an array in another array
+
+5. by using the count function
+
+6. it turns a string into a array using the specified delimeter
+
+7. By using the reset function.
+
+
+-----
+
+Chapter 7
+
+Test Your Knowledge
+1. Which printf conversion specifier would you use to display a floating-point
+number?
+2. What printf statement could be used to take the input string “Happy Birthday”
+and output the string “**Happy”?
+3. To send the output from printf to a variable instead of to a browser, what alternative
+function would you use?
+4. How would you create a Unix timestamp for 7:11 AM on May 2, 2016?
+5. Which file access mode would you use with fopen to open a file in write and read
+mode, with the file truncated and the file pointer at the start?
+6. What is the PHP command for deleting the file file.txt?
+7. Which PHP function is used to read in an entire file in one go, even from across
+the Web?
+8. Which PHP system variable holds the details on uploaded files?
+9. Which PHP function enables the running of system commands?
+10. What is wrong with the following XHTML 1.0 tag: <input type=file name=file
+size=10>?
+
+1. %f
+2. printf("%'*7.5s", $param)
+3. sprintf
+4.mktime(7, 11, 0, 5, 2, 2016);
+5. w+
+6. unlink('file.txt');
+7. file_get_contents()
+8. $_FILES
+9. executing
+10. missing / before the ending >
+
+
+
+
